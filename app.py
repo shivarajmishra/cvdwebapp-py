@@ -2,8 +2,6 @@
 import numpy as np
 import pickle
 from flask import Flask, request, render_template
-from sklearn.datasets import make_hastie_10_2
-from sklearn.ensemble import GradientBoostingClassifier
 
 # Load ML model
 model = pickle.load(open('model_heart.pkl', 'rb')) 
