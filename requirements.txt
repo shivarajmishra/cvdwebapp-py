@@ -5,8 +5,11 @@ itsdangerous==1.1.0
 Jinja2==2.11.1
 joblib==0.14.1
 MarkupSafe==1.1.1
-numpy==1.18.2
-pandas==1.0.3
+numpy
+pandas
+streamlit
+mlxtend
+xgboost
 python-dateutil==2.8.1
 pytz==2019.3
 scikit-learn==0.22.2
