@@ -1,149 +1,181 @@
-<html>
-	<head>
-	<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-		<title>Heart Disease Test</title>
-	</head>
-	<body>
-	<!-- Java Script -->	
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<!doctype html>
+<html lang="en">
 
-		
-		<!-- Navbar-->
-		<nav class="navbar navbar-dark bg-dark">
-			<span class="navbar-brand mb-0 h1">Heart Disease Web Application</span>
-			<span class="navbar-brand mb-0 h1">Citation: Mishra SR. Web application for cardiovascular disease modeling: beginner's guide. Kaggle. 2021. Available from: https://www.kaggle.com/shivarajmishra/web-application-for-heart-disease-risk-in-ml </span>
-		</nav>
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+		<link rel="icon" type="image/png" href="../assets/favicon.png"/>
+
+	<title>Heart Disease Test</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container">
-			<br>
-			<!--Form-->
-			<form action = "{{url_for('predict')}}" method ="POST" >
-				<fieldset>
-				<legend>Fill out this application form to know about your heart disease risk</legend><br>
-				  <div class="card card-body" >
-					  <div class="form-group  row">
+			<a class="navbar-brand" href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-suit-heart-fill" viewBox="0 0 16 16">
+				<path d="M4 1c2.21 0 4 1.755 4 3.92C8 2.755 9.79 1 12 1s4 1.755 4 3.92c0 3.263-3.234 4.414-7.608 9.608a.513.513 0 0 1-.784 0C3.234 9.334 0 8.183 0 4.92 0 2.755 1.79 1 4 1z"/>
+			  </svg>
+ 				Heart Disease Web Application</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+
+	</nav>
+	<div class="container">
+
+		<div class="card  mt-4">
+			<div class="card-header">
+				Fill out this application form to know about your heart disease risk
+			</div>
+			<div class="card-body">
+				<form action="{{url_for('predict')}}" method="POST">
+
+					<div class="form-group  row">
 						<div class="col-sm-3">
 							<label for="age">Age</label>
 							<input type="number" class="form-control" id="age" name="age" required>
 						</div>
 						<div class="col-sm-3">
 							<label for="sex">Sex</label>
-							<select class="form-control" id="sex"  name="sex" required>
-							  <option disabled selected value> -- Select an Option -- </option>
-							  <option value = "0">Male</option>
-							  <option value = "1">Female</option>
-							</select>
-					   </div>
-					  </div>
-					  <br>
-					  <div class="form-group  row">
-						  <div class="col-sm">
-							<label for="cp">Chest Pain Type</label>
-							<select class="form-control" id="cp" name = "cp" required>
-							  <option disabled selected value> -- Select an Option -- </option>
-							  <option value = "0">Typical Angina</option>
-							  <option value = "1">Atypical Angina</option>
-							  <option value = "2">Non-anginal Pain</option>
-							  <option value = "3">Asymptomatic</option>
-							</select>
-						  </div>
-						  <div class="col-sm">
-							<label for="trestbps">Resting Blood Pressure in mm Hg</label>
-							<input type="number" class="form-control" id="trestbps" name="trestbps"  required>
-						  </div>
-						  <div class="col-sm">
-							<label for="chol">Serum Cholestoral in mg/dl</label>
-							<input type="number" class="form-control" id="chol" name="chol" required>
-						  </div>
-						  <div class="col-sm">
-							<label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
-							<select class="form-control" id="fbs" name="fbs" required>
-							  <option disabled selected value> -- Select an Option -- </option>
-							  <option value = "0">False</option>
-							  <option value = "1">True</option>
+							<select class="form-control" id="sex" name="sex" required>
+								<option disabled selected value> -- Select an Option -- </option>
+								<option value="0">Male</option>
+								<option value="1">Female</option>
 							</select>
 						</div>
-					  </div>
-					  
-					  <br>
-					  <div class="form-group row">
-							<div class="col-sm">
-								<label for="restecg">Resting ECG Results </label>
-								<select class="form-control" id="restecg" name="restecg" required>
-								  <option disabled selected value> -- Select an Option -- </option>
-								  <option value = "0">Normal</option>
-								  <option value = "1">Having ST-T wave abnormality  </option>
-								  <option value = "2"> Probable or definite left ventricular hypertrophy  </option>
-								</select>
-							  </div>
-							  <div class="col-sm">
-								<label for="thalach">Maximum Heart Rate</label>
-								<input type="number" class="form-control" id="thalach" name="thalach" required>
-							  </div>
-							  <div class="col-sm">
-								<label for="exang">ST Depression Induced</label>
-								<input type="number" step="any" class="form-control" id="exang" name="exang" required>
-							  </div>
-							  <div class="col-sm">
-								<label for="exang">Exercise Induced Angina </label>
-								<select class="form-control" id="oldpeak" name="oldpeak" required>
-								  <option disabled selected value> -- Select an Option -- </option>
-								  <option value = "0">No</option>
-								  <option value = "1">Yes</option>
-								</select>
-							  </div>
-						  </div>
-						  <br>
-						  <div class="form-group  row">
-						  <div class="col-sm">
+					</div>
+					<br>
+					<div class="form-group  row">
+						<div class="col-sm">
+							<label for="cp">Chest Pain Type</label>
+							<select class="form-control" id="cp" name="cp" required>
+								<option disabled selected value> -- Select an Option -- </option>
+								<option value="0">Typical Angina</option>
+								<option value="1">Atypical Angina</option>
+								<option value="2">Non-anginal Pain</option>
+								<option value="3">Asymptomatic</option>
+							</select>
+						</div>
+						<div class="col-sm">
+							<label for="trestbps">Resting Blood Pressure in mm Hg</label>
+							<input type="number" class="form-control" id="trestbps" name="trestbps" required>
+						</div>
+						<div class="col-sm">
+							<label for="chol">Serum Cholestoral in mg/dl</label>
+							<input type="number" class="form-control" id="chol" name="chol" required>
+						</div>
+						<div class="col-sm">
+							<label for="fbs">Fasting Blood Sugar > 120 mg/dl</label>
+							<select class="form-control" id="fbs" name="fbs" required>
+								<option disabled selected value> -- Select an Option -- </option>
+								<option value="0">False</option>
+								<option value="1">True</option>
+							</select>
+						</div>
+					</div>
+
+					<br>
+					<div class="form-group row">
+						<div class="col-sm">
+							<label for="restecg">Resting ECG Results </label>
+							<select class="form-control" id="restecg" name="restecg" required>
+								<option disabled selected value> -- Select an Option -- </option>
+								<option value="0">Normal</option>
+								<option value="1">Having ST-T wave abnormality </option>
+								<option value="2"> Probable or definite left ventricular hypertrophy </option>
+							</select>
+						</div>
+						<div class="col-sm">
+							<label for="thalach">Maximum Heart Rate</label>
+							<input type="number" class="form-control" id="thalach" name="thalach" required>
+						</div>
+						<div class="col-sm">
+							<label for="exang">ST Depression Induced</label>
+							<input type="number" step="any" class="form-control" id="exang" name="exang" required>
+						</div>
+						<div class="col-sm">
+							<label for="exang">Exercise Induced Angina </label>
+							<select class="form-control" id="oldpeak" name="oldpeak" required>
+								<option disabled selected value> -- Select an Option -- </option>
+								<option value="0">No</option>
+								<option value="1">Yes</option>
+							</select>
+						</div>
+					</div>
+					<br>
+					<div class="form-group  row">
+						<div class="col-sm">
 							<label for="slope">Slope of the Peak Exercise ST Segment </label>
 							<select class="form-control" id="slope" name="slope" required>
-							  <option disabled selected value> -- Select an Option -- </option>
-							  <option value = "0">Upsloping</option>
-							  <option value = "1">Flat</option>
-							  <option value = "2">Downsloping</option>
+								<option disabled selected value> -- Select an Option -- </option>
+								<option value="0">Upsloping</option>
+								<option value="1">Flat</option>
+								<option value="2">Downsloping</option>
 							</select>
-						  </div>
-						  <div class="col-sm">
+						</div>
+						<div class="col-sm">
 							<label for="ca">Number of Vessels Colored by Flourosopy</label>
-							<select class="form-control" id="ca" name = "ca" required>
-							  <option disabled selected value> -- Select an Option -- </option>
-							  <option value = "0">0</option>
-							  <option value = "1">1</option>
-							  <option value = "2">2</option>
-							  <option value = "3">3</option>
+							<select class="form-control" id="ca" name="ca" required>
+								<option disabled selected value> -- Select an Option -- </option>
+								<option value="0">0</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
 							</select>
-						  </div>
-						  <div class="col-sm">
+						</div>
+						<div class="col-sm">
 							<label for="thal">Thalassemia</label>
-							<select class="form-control" id="thal" name = "thal" required>
-							  <option disabled selected value> -- Select an Option -- </option>
-							  <option value = "3">Normal</option>
-							  <option value = "6">Fixed defect</option>
-							  <option value = "7">Reversable defect</option>
+							<select class="form-control" id="thal" name="thal" required>
+								<option disabled selected value> -- Select an Option -- </option>
+								<option value="3">Normal</option>
+								<option value="6">Fixed defect</option>
+								<option value="7">Reversable defect</option>
 							</select>
-						  </div>
-					  </div>
-					  <br>
-					  <div class="form-group">
+						</div>
+					</div>
+					<br>
+					<div class="form-group">
 						<input class="btn btn-primary" type="submit" value="Submit">
-					  </div>
-					  
-					  <!--Prediction Result-->
-					  <div id ="result">
-							<strong style="color:red">{{result}}</strong>
-					 </div>
-				     </div>
-			 </fieldset>
-			</form>
-			
-		</div>
-		
-	</body>
-</html>
+					</div>
 
+					<!--Prediction Result-->
+					<div id="result">
+						<strong style="color:red">{{result}}</strong>
+					</div>
+
+
+				</form>
+			</div>
+		</div>
+		<div class="alert alert-primary mt-4" role="alert">
+			Citation: Mishra SR. Web application for cardiovascular disease modeling: beginner's guide. Kaggle. 2021.
+			Available from: <a href="https://www.kaggle.com/shivarajmishra/web-application-for-heart-disease-risk-in-ml"
+				class="alert-link"
+				target="_blank">https://www.kaggle.com/shivarajmishra/web-application-for-heart-disease-risk-in-ml</a>
+		</div>
+
+
+	</div>
+
+	<!-- Optional JavaScript; choose one of the two! -->
+
+	<!-- Option 1: Bootstrap Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+		crossorigin="anonymous"></script>
+
+	<!-- Option 2: Separate Popper and Bootstrap JS -->
+	<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
